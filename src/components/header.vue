@@ -3,13 +3,14 @@
     <md-dialog-alert :md-content="error.content" :md-ok-text="error.ok" ref="error">
       <md-content>Error</md-content>
     </md-dialog-alert>
-    <h1 @click="attendanceManager">Attendance manager</h1>
+    <h1>Attendance manager</h1>
     <md-button v-if="logout" @click="signOut">Sign Out</md-button>
     <div class="navbar" v-if="logout">
       <ul>
         <li @click="addSub">Add Subjects</li>
         <li @click="updateProfile">Update Profile</li>
         <li @click="timetable">Timetable</li>
+        <li @click="attendanceManager">Today's Attendance</li>
       </ul>
     </div>
   </div>
