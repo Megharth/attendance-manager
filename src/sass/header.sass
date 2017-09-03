@@ -1,35 +1,26 @@
 @import "../sass/variables"
-.header
-  h1
-    display: inline-block
-    margin: 0
-    font-family: $primaryFont
-    cursor: pointer
-  text-align: center
-  background-color: $primaryColor
-  height: 100px
-  margin: 0
+.navbar
+  border: 0
   color: white
-  .md-button.md-theme-default
-    position: absolute
-    right: 0
-    &:hover
-      background-color: #E0F7FA
-      color: #607D8B
-  .navbar
-    margin-top: 10px
-    border: 0
-    color: white
-    font-family: $bowlby
-    font-size: 16px
+  position: relative
+  font-family: $bowlby
+  font-size: 16px
+  margin: 0
+  background-color: $primaryColor
+  text-align: center
+  .header
+    position: relative
     text-align: center
-    ul
-      background-color: $primaryColor
+    background-color: $primaryColor
+    color: white
+    padding: 10px 0
+    h1
+      font-family: $primaryFont
       margin: 0
-      display: block
-      padding: 10px
-      li
-        list-style-type: none
-        display: inline
-        margin: 0 10px
-        cursor: pointer
+      cursor: pointer
+      display: inline
+  .nav-justified
+    li
+      margin: 0
+      padding: 15px
+      cursor: pointer

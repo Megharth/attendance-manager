@@ -22,14 +22,16 @@
         </md-dialog-actions>
       </md-dialog-content>
     </md-dialog>
-    <div class="subject">
-      <md-card v-for="subject in subjects" :key="id">
-        <md-card-header>{{ subject.name }}</md-card-header>
-        <md-card-content>
-          <span class="left">Attended: {{subject.attended}}</span>
-          <span class="right">Total: {{subject.total}}</span>
-        </md-card-content>
-      </md-card>
+    <div class="container-fluid">
+      <div class="subjects">
+        <div v-for="subject in subjects" :key="id" class="card">
+          <div class="card-header">{{ subject.name }}</div>
+          <div class="card-content">
+            <span class="left">Attended: {{subject.attended}}</span>
+            <span class="right">Total: {{subject.total}}</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="actions">
       <md-button class="md-fab md-primary" id="add" @click="openDialog('addSub')">

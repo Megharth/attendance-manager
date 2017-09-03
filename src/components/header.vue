@@ -1,18 +1,18 @@
 <template>
-  <div class="header">
-    <md-dialog-alert :md-content="error.content" :md-ok-text="error.ok" ref="error">
-      <md-content>Error</md-content>
-    </md-dialog-alert>
-    <h1>Attendance manager</h1>
-    <md-button v-if="logout" @click="signOut">Sign Out</md-button>
-    <div class="navbar" v-if="logout">
-      <ul>
+    <div class="navbar">
+      <div class="header">
+        <md-dialog-alert :md-content="error.content" :md-ok-text="error.ok" ref="error">
+          <md-content>Error</md-content>
+        </md-dialog-alert>
+        <h1>Attendance manager</h1>
+      </div>
+      <ul class="nav nav-justified"  v-if="logout">
         <li @click="addSub">Add Subjects</li>
         <li @click="updateProfile">Update Profile</li>
         <li @click="timetable">Timetable</li>
         <li @click="attendanceManager">Today's Attendance</li>
+        <li v-if="logout" @click="signOut">Sign Out</li>
       </ul>
-    </div>
   </div>
 </template>
 

@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .panel
-    max-width: 500px
-    margin: 0px auto
+.panel
+  max-width: 500px
+  margin: 0px auto
 </style>

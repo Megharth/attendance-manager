@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <md-tabs>
       <md-tab md-label="Login">
         <login @login="login($event)" class="login"></login>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <h2>{{ timetable.day }}</h2>
     <md-dialog-confirm
       :md-title="confirm.title"
@@ -11,23 +11,23 @@
     >
     </md-dialog-confirm>
     <div v-if="!attendanceDone">
-      <md-card v-for="subject in timetable.subjects" :id="subject">
-        <md-card-header>{{ subject }}</md-card-header>
-        <md-card-actions>
-          <md-button class="md-fab md-primary md-small" :id="subject + '-attend'" @click="attended(subject)">
+      <div class="card" v-for="subject in timetable.subjects" :id="subject">
+        <div class="card-header">{{ subject }}</div>
+        <div class="card-actions">
+          <md-button class="md-fab md-primary md-mini" :id="subject + '-attend'" @click="attended(subject)">
             <md-icon>done</md-icon>
             <md-tooltip md-direction="left">Attend</md-tooltip>
           </md-button>
-          <md-button class="md-fab md-warn md-small" :id="subject + '-bunk'" @click="bunked(subject)">
+          <md-button class="md-fab md-warn md-mini" :id="subject + '-bunk'" @click="bunked(subject)">
             <md-icon>clear</md-icon>
             <md-tooltip md-direction="right">Bunk</md-tooltip>
           </md-button>
-          <md-button class="md-fab" :id="subject + '-undo'" @click="undo(subject)" disabled>
+          <md-button class="md-fab md-mini" :id="subject + '-undo'" @click="undo(subject)" disabled>
             <md-icon>undo</md-icon>
             <md-tooltip>Undo</md-tooltip>
           </md-button>
-        </md-card-actions>
-      </md-card>
+        </div>
+      </div>
     </div>
     <div v-if="attendanceDone" class="submitted">
       <h1>You have submitted today's attendance!</h1>
@@ -145,6 +145,7 @@
         console.log(updates);
         return Firebase.database().ref().update(updates).then(function() {
           Firebase.database().ref(path + '/attendanceDone').set(true);
+          self.attendanceDone = true;
         });
       }
     },

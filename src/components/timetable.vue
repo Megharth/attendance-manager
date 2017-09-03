@@ -3,23 +3,27 @@
     <h2>Time Table</h2>
     <md-tabs v-if="exist" md-centered>
       <md-tab v-for="object in timetable" :md-label="object.day">
-        <md-card v-for="subject in object.subjects">
-          <md-card-header>{{ subject }}</md-card-header>
-        </md-card>
-        <div v-if="object.subjects == null || object.subjects.length == 0" class="no-work">
-          <img src="../assets/relax.jpg">
-          <h4>It's your day off! Enjoy!</h4>
+        <div class="existing">
+          <div class="card" v-for="subject in object.subjects">
+            <div class="card-header">{{ subject }}</div>
+          </div>
+          <div v-if="object.subjects == null || object.subjects.length == 0" class="no-work">
+            <img src="../assets/relax.jpg">
+            <h4>It's your day off! Enjoy!</h4>
+          </div>
         </div>
       </md-tab>
     </md-tabs>
     <md-tabs md-centered v-if="!exist">
       <md-tab  v-for="day in days" :md-label="day">
-        <md-card v-for="subject in subjects">
-          <md-card-header>{{ subject.name }}</md-card-header>
-          <md-card-actions>
-            <md-button @click="setTimetable(day, subject)" :id="day + subject.id" >Add</md-button>
-          </md-card-actions>
-        </md-card>
+        <div class="non-existing">
+          <div class="card" v-for="subject in subjects">
+            <div class="card-header">{{ subject.name }}</div>
+            <div class="card-actions">
+              <md-button @click="setTimetable(day, subject)" :id="day + subject.id" >Add</md-button>
+            </div>
+          </div>
+        </div>
       </md-tab>
     </md-tabs>
     <div class="actions">
