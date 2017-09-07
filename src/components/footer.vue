@@ -5,7 +5,7 @@
       <div class="buttons">
         <md-button class="md-fab md-mini" onclick="window.open('https://plus.google.com/+MegharthLakhataria')">
           <md-avatar>
-            <img src="../assets/google.png">
+            <img src="https://github.com/Megharth/attendance-manager/blob/master/docs/static/img/google.0dd54f8.png">
           </md-avatar>
         </md-button>
         <md-button class="md-fab md-mini" onclick="window.open('https://www.facebook.com/megharth.lakhataria')">
