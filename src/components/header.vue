@@ -4,21 +4,28 @@
         <md-dialog-alert :md-content="error.content" :md-ok-text="error.ok" ref="error">
           <md-content>Error</md-content>
         </md-dialog-alert>
-        <h1>Attendance manager</h1>
+        <h1 @click="dashboard">Attendance manager</h1>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" v-if="logout">
+          <md-icon>menu</md-icon>
+        </button>
       </div>
-      <ul class="nav nav-justified"  v-if="logout">
-        <li @click="addSub">Add Subjects</li>
-        <li @click="updateProfile">Update Profile</li>
-        <li @click="timetable">Timetable</li>
-        <li @click="attendanceManager">Today's Attendance</li>
-        <li v-if="logout" @click="signOut">Sign Out</li>
-      </ul>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav nav-justified"  v-if="logout">
+          <li @click="addSub">Add Subjects</li>
+          <li @click="updateProfile">Update Profile</li>
+          <li @click="timetable">Timetable</li>
+          <li @click="attendanceManager">Today's Attendance</li>
+          <li v-if="logout" @click="signOut">Sign Out</li>
+        </ul>
+      </div>
   </div>
 </template>
 
 <script>
   import Firebase from 'firebase'
+  import MdIcon from "../../node_modules/vue-material/src/components/mdIcon/mdIcon.vue";
   export default{
+    components: {MdIcon},
     props: {
       logout: {
         type: Boolean
@@ -66,6 +73,12 @@
           logout: true,
           component: 'add-sub'
         });
+      },
+      dashboard: function() {
+        this.$emit('updateComponent', {
+          logout: true,
+          component: 'dashboard'
+        })
       },
       updateProfile: function() {
         this.$emit('updateComponent', {

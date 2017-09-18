@@ -25,6 +25,7 @@ import addSub from './components/addSub'
 import timetable from './components/timetable.vue'
 import Firebase from 'firebase'
 import Attendance from './components/Attendance.vue'
+import Dashboard from './components/dashboard.vue'
 
 var config = {
     apiKey: "AIzaSyB42fPdwrxiHCYGwPmNv9wdnJo6tbJ1ePY",
@@ -61,7 +62,8 @@ export default {
     'update-profile': updateProfile,
     'add-sub': addSub,
     'timetable': timetable,
-    'attendance': Attendance
+    'attendance': Attendance,
+    'dashboard': Dashboard,
   },
   methods: {
     openDialog: function(ref) {
