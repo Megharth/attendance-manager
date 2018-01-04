@@ -22,6 +22,14 @@
         </md-dialog-actions>
       </md-dialog-content>
     </md-dialog>
+    <md-dialog-confirm
+      :md-title="confirm.title"
+      :md-content-html="confirm.contentHtml"
+      :md-ok-text="confirm.ok"
+      :md-cancel-text="confirm.cancel"
+      ref="delSub"
+      @close="onClose"
+    ></md-dialog-confirm>
     <div class="container-fluid">
       <div class="subjects">
         <div v-for="subject in subjects" :key="id" class="card">
@@ -38,6 +46,10 @@
         <md-icon>add</md-icon>
         <md-tooltip md-direction="left">Add a subject</md-tooltip>
       </md-button>
+      <md-button class="md-fab md-warn" id="delete" @click="openDialog('delSub')">
+        <md-icon>delete</md-icon>
+        <md-tooltip md-direction="top">Reset Subjects</md-tooltip>
+      </md-button>
       <md-button class="md-fab md-primary" id="done" v-if="done" @click="sendSub">
         <md-icon>done</md-icon>
         <md-tooltip md-direction="left">Submit</md-tooltip>
@@ -48,8 +60,10 @@
 
 <script>
 import Firebase from 'firebase'
+import MdDialog from "../../node_modules/vue-material/src/components/mdDialog/mdDialog.vue";
 
 export default {
+  components: {MdDialog},
   props: {
     user: {
       type: Object
@@ -59,7 +73,13 @@ export default {
     return {
       subjects: [],
       done: false,
-      id: 0
+      id: 0,
+      confirm: {
+        title: 'Delete Subjects?',
+        contentHtml: 'Doing this will reset all the data including attendance!',
+        ok: 'yes',
+        cancel: 'no'
+      }
     }
   },
   methods: {
@@ -68,6 +88,19 @@ export default {
     },
     closeDialog: function(ref) {
       this.$refs[ref].close();
+    },
+    onClose: function(type) {
+      if(type === "ok")
+        this.removeData();
+    },
+    sendSub: function() {
+      var self = this;
+      var updates = {};
+      updates['users/' + self.user.uid + '/subjects/'] = self.subjects;
+      return Firebase.database().ref().update(updates).then(function() {
+        console.log(self.user.displayName + ': subjects added');
+        self.$emit('addSub', 'timetable');
+      })
     },
     addSub: function() {
       this.id++;
@@ -82,21 +115,22 @@ export default {
       this.subjects.total = '';
       this.done = true;
     },
-    sendSub: function() {
+    removeData: function() {
       var self = this;
       var updates = {};
-      updates['users/' + self.user.uid + '/subjects/'] = self.subjects;
+      updates['users/' + self.user.uid + '/attendanceLogs'] = null;
+      updates['users/' + self.user.uid + '/subjects'] = null;
+      updates['users/' + self.user.uid + '/timetable'] = null;
       return Firebase.database().ref().update(updates).then(function() {
-        console.log(self.user.displayName + ': subjects added');
-        self.$emit('addSub', 'timetable');
-      })
-    },
+        location.reload();
+      });
+    }
   },
   created() {
     var self = this;
     return Firebase.database().ref('users/' + self.user.uid).once('value').then(function(snap) {
       if(snap.val().subjects)
-        self.subjects = snap.val().subjects;
+          self.subjects = snap.val().subjects;
       console.log(self.subjects);
     })
   }

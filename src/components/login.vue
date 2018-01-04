@@ -19,7 +19,7 @@
           <div class="col-sm-8 col-sm-offset-2">
             <md-input-container>
               <label>password</label>
-              <md-input type="password" v-model="password"></md-input>
+              <md-input @keyup.native.enter="signIn" type="password" v-model="password"></md-input>
             </md-input-container>
           </div>
         </div>

@@ -4,7 +4,8 @@
         <md-dialog-alert :md-content="error.content" :md-ok-text="error.ok" ref="error">
           <md-content>Error</md-content>
         </md-dialog-alert>
-        <h1 @click="dashboard">Attendance manager</h1>
+        <h1 v-if="logout" @click="dashboard">Attendance manager</h1>
+        <h1 v-if="!logout">Attendance Manager</h1>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" v-if="logout">
           <md-icon>menu</md-icon>
         </button>
