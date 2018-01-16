@@ -1,24 +1,28 @@
 .dashboard
   display: inline-block
-  margin: 10px auto
+  margin: 0 auto
   padding: 20px 60px
-  .progress-circle
-    display: inline-block
-    position: relative
-    margin: 20px
-    padding: 20px
-    background-color: #00BFA5
-    border-radius: 5%
-    .md-spinner
-      background-color: #555555
-      border-radius: 50%
-    .percent
-      position: absolute
-      left: 42.5%
-      top: 56%
-      font-size: 18px
-      z-index: 1
+  .panel-default
+    background-color: black
+    box-shadow: 0 0 4px 4px #888
+    .panel-heading
+      text-align: center
+      background-color: steelblue
       color: white
+    .panel-body
+      background-color: #00BFA5
+      text-align: center
+      .md-spinner
+        background-color: #555555
+        border-radius: 50%
+      .percent
+        position: absolute
+        left: 52%
+        margin-left: -25px
+        top: 54%
+        font-size: 18px
+        z-index: 1
+        color: white
     .subject
       text-align: center
       padding: 20px

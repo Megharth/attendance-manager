@@ -1,13 +1,21 @@
 <template>
   <div class="container">
     <div class="dashboard">
-      <div class="progress-circle" v-for="subject in subjects" :key="subject.name" :id="subject.name">
-        <span class="percent">{{ subject.percentage }}</span>
-        <div class="subject"><span>{{ subject.name }}</span></div>
-        <md-spinner
-          :md-progress = subject.percentage
-          :md-size = spinner.size
-          :md-stroke = spinner.stroke></md-spinner>
+      <div class="row">
+        <div class="col-sm-4" v-for="subject in subjects" :key="subject.name" :id="subject.name">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              {{ subject.name }}
+            </div>
+            <div class="panel-body">
+              <span class="percent">{{ subject.percentage }} %</span>
+              <md-spinner
+                :md-progress = subject.percentage
+                :md-size = spinner.size
+                :md-stroke = spinner.stroke></md-spinner>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
